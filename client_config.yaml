@@ -1,0 +1,45 @@
+#在线指令> 开启:cmd_lz4_open 关闭:cmd_lz4_close
+#在线指令> 开启:cmd_fec_open 关闭:cmd_fec_close
+#本地配置------------------------------------------
+Local:
+ #连接模式 1:经过查询的p2p  2:直连p2p
+ ConnectModel: 1
+ #是否为控制端 (true:控制端 false:被控端) (在本地是否为tcp服务端)
+ IsControl: false
+ #p2p是否加密(aes+crc)  (true:加密 false:不加密) (注意:双端配置需保持一致!否则无法正常通讯! )
+ P2PIsEncryption: true
+ #p2p是否压缩流量 (true:压缩 false:不压缩)
+ P2PIsLZ4: true
+ #p2p是否开启抗干扰能力(0:0=不开启  4:2=数据片:冗余片) (注意: 双端配置需保持一致!否则无法正常通讯!)
+ P2PIsFEC: 0:0
+ #Udp隧道端口
+ UdpTunelPort: 20013
+ #需要桥接的端口
+ AccessPort: 20001
+ #本地名字和密码，不超过32字节
+ MyName: xx
+ MyPassword: xx
+ 
+
+#查询p2p配置---------------------------------------
+QueryConnect:
+ ServerDNS: xx
+ #ServerIp: xx.xx
+ ServerPort: 20001
+
+#希望要连接的名字  (只对控制端有效)
+ ToName: xx
+ ToPassword: xxx
+ 
+#直连p2p配置--------------------------------------
+DirectlyConnect:
+#本地出口ip (如果两端都是同一内网内的p2p，则为内网Ip，否则为外网出口ip)
+ LocalOutIp: 192.168.1.107
+ #随机种子，双方需提前约定好，必须相同
+ RandNum: 33
+
+ #要连接的目标信息
+ ToIp: 192.168.1.109
+ ToPort: 20015
+ ToName: xx
+ ToPassword: xx
